@@ -789,6 +789,7 @@ template<typename T> LinkedList<T>& LinkedList<T>::operator+=(const LinkedList<T
 
 template<typename T> LinkedList<T>& LinkedList<T>::operator*=(const int scalar)
 {
+    // This is so bad pls fix :(
     for (int i = 0; i < scalar; i++)
         (*this) += (*this);
 
@@ -797,7 +798,7 @@ template<typename T> LinkedList<T>& LinkedList<T>::operator*=(const int scalar)
 
 template<typename T> LinkedList<T> LinkedList<T>::operator+(const T& val) const
 {
-    // This isn't very ideal -> O(n)
+    // This isn't very ideal
     return LinkedList<T>(*this).push_back(val);
 }
 
