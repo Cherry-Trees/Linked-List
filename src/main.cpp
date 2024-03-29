@@ -1,65 +1,41 @@
 #include <iostream>
+#include <cstdlib> 
 #include "LinkedList.hpp"
 
 using namespace std;
 
-/* TEST FILE */
+template<typename T> struct Test
+{
+    T a, b, c;
+
+    Test() {}
+    Test(const T a, const T b, const T c) : a(a), b(b), c(c) {}
+};
+
+template<typename T> ostream& operator<<(ostream& out, const Test<T>& t) {
+    return out << "{ A:" << t.a << ", B:" << t.b << ", C:" << t.c << " }";
+}
+
+List1i generateRandomList(const int size) {
+    List1i result;
+    srand((unsigned) time(NULL));
+    
+    for (int i = 0; i < size; i++) {
+        result += rand();
+    }
+
+    return result;
+}
 
 int main() {
 
+    LinkedList<int> l = generateRandomList(26000);
 
-    LinkedList<int> ll;
+    cout << l << endl << endl;
 
-    ll.push(5);
-    ll.push(1);
-    ll.push(10);
+    l.sort([](int a, int b){return a < b;});
 
-    cout << ll << endl;
-
-    // ll += 104;
-
-    cout << ll << endl;
-
-    LinkedList<int> r;
-
-    r.push(5);
-    r.push(1);
-
-    // ll *= 100;
-
-    ll.push_copy(ll);
-
-    r[0] = 12345;
-    
-
-    cout << ll << endl;
-    cout << ll.size() << endl;
-
-
-    LinkedList<LinkedList<int>> k;
-
-    k.push(ll);
-    k.push(r);
-
-    cout << k << endl;
-    cout << k.size() << endl;
-
-    LinkedList<int> c(ll);
-    cout << c << endl;
-    cout << c.size() << endl;
-
-    c.push_copy(r);
-    cout << c << endl;
-    cout << c.size() << endl;
-
-
-    // LinkedList<int> p(ll);
-    // cout << ll.beginNode() << endl;
-    // cout << p.beginNode() << endl;
-
-    // cout << ll << endl;
-    // cout << p << endl;
-    // cout << p.endElement() << endl;
+    cout << l << endl << endl;
 
     return 0;
 }
